@@ -1,0 +1,95 @@
+#include<stdio.h>
+#include <stdlib.h>
+
+typedef struct node
+{
+   int data;
+   struct node *left;
+   struct node *right;
+}node;
+
+node *root = NULL;
+
+node* insert( node*root , int);
+void display(node *root);
+
+
+int count = 0;
+
+
+void main()
+{
+   int choice, value;
+  
+   printf("\n----- Binary Tree -----\n");
+   
+   while(1)
+    {
+      printf("\n***** MENU *****\n");
+      printf("1. Insert\n2. Display\n3. Exit");
+      
+      printf("\nEnter your choice: ");
+       scanf("%d",&choice);
+    
+      switch(choice)
+       {
+	    case 1: printf("\nEnter the value to be insert: ");
+		         scanf("%d", &value);
+		         
+		        root = insert(root,value);
+		        
+		        break;
+		        
+	    case 2: display(root); 
+	            break;
+	    
+	    case 3: exit(0);
+	    
+	    default: printf("\nWrong choice, Enter again !");
+      }
+   }
+}
+
+node* insert( node *root,int value)
+{
+   node *newNode;
+   
+   newNode = (struct node*)malloc(sizeof(struct node));
+   
+   newNode->data = value;
+   
+    if(root == NULL)
+     {
+      newNode->left = newNode->right = NULL;
+      root = newNode;
+      count++;
+     }
+     
+   else
+     {
+      if(count%2 != 0)
+	   {
+	    root->left = insert(root->left,value);
+	   }
+	   
+      else
+       {
+	    root->right = insert(root->right,value);
+	   }
+     }
+     
+   return root;
+}
+
+// display is performed by using Inorder Traversal
+void display( node *root)
+{
+   if(root != NULL)
+    {
+      display(root->left);
+      
+      printf("%d\t",root->data);
+      
+      display(root->right);
+    }
+}
