@@ -1,0 +1,78 @@
+#include<stdio.h>
+
+void quicksort(int B[25],int first,int last);
+
+void main()
+{
+ int n,i,j,A[25];
+ 
+ printf("\n\nEnter array size : ");
+  scanf("%d",&n);
+
+ printf("\nEnter array elements : \n");
+ 
+ for(i=0;i<n;i++)
+  {
+   printf("Element %d : ",i+1);
+   scanf("%d",&A[i]);
+  }
+  
+ printf("\nUnsorted Array : ");
+  for(i=0;i<n;i++)
+   {
+    printf("%d ",A[i]);
+   }
+ printf("\n");
+ 
+ 
+ quicksort(A,0,n-1); // Sort function call
+ 
+ 
+ // printing
+  printf("\nSorted Array : ");
+  for(i=0;i<n;i++)
+   {
+    printf("%d ",A[i]);
+   }
+ printf("\n");
+}  
+  
+ 
+void quicksort(int B[25],int first,int last)
+{
+ int i,j,pivot,temp;
+ 
+  if(first<last)
+   {
+     pivot=first;
+     i=first;
+     j=last;
+      
+      while(i<j)
+       {
+         while(B[i]<=B[pivot]&&i<last)
+          {
+           i++;
+          }
+        
+         while(B[j]>B[pivot])
+          {
+           j--;
+          }
+          
+         if(i<j)
+          {
+            temp=B[i];
+            B[i]=B[j];
+            B[j]=temp;
+          }
+        }
+        
+     temp=B[pivot];
+     B[pivot]=B[j];
+     B[j]=temp;
+  
+     quicksort(B,first,j-1);
+     quicksort(B,j+1,last);
+   }
+} 
