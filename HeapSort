@@ -66,8 +66,6 @@ int main()
  int A[] = {1, 12, 9, 5, 6, 10};
  int n = sizeof(A) / sizeof(A[0]);
  
- printf("%d",n);
- 
  printf("\nHeap Sort \n\nUnsorted array is \n");
  printArray(A,n);
   
