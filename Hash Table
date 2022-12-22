@@ -1,0 +1,108 @@
+#include<stdio.h>
+#include<stdlib.h>
+#define TabSize 10
+
+int h[TabSize]={NULL};
+
+void insert()
+{
+ int key,index,i,hkey;
+ 
+ printf("\nEnter value to be inserted to the Hash Table : ");
+  scanf("%d",&key);
+ 
+ hkey = key % TabSize;
+  
+  for(i=0;i< TabSize;i++)
+   {
+    index=(hkey+i)%TabSize;
+     if(h[index] == NULL)
+      {
+       h[index]=key;
+       break;
+      }
+   }
+   
+   if(i==TabSize)
+    {
+     printf("\n Table is Full ! ");
+    }
+}
+
+
+void search()
+{
+ int key,index,i,hkey;
+ printf("Enter the element to be searched : ");
+  scanf("%d",&key);
+ 
+ hkey = key% TabSize;
+  
+  for(i=0;i< TabSize;i++)
+   {
+    index=(hkey+i)%TabSize;
+     if(h[index] == key)
+      {
+       printf("The element %d is found at index %d",key,index);
+       break;
+      }
+   }
+   
+   if(i==TabSize)
+    {
+     printf("\n Element not found ! ");
+    }
+}
+      
+ 
+
+void display()
+{
+ int i;
+ 
+ printf("Elements arranged in Hash table is : \n");
+ 
+  for(i=0;i< TabSize;i++)
+   {
+    if(h[i]==NULL)
+     {
+      printf("\n %d|NULL ",i);
+     }
+    else
+     {
+      printf("\n %d| %d",i,h[i]);
+     }
+    printf("\n");
+   }
+}
+
+ 
+
+
+int main()
+{
+  int choice;
+   printf("\n\tHash Table of Table Size 10\n");
+   printf("\n1. Insert  \n2. Display \n3. Search \n4. Exit");
+   
+ while(1)
+     {
+      printf("\nEnter your choice: ");
+      scanf("%d",&choice);
+      switch(choice)
+       {
+        case 1: insert();
+                break;
+
+        case 2: display();
+                break;
+
+        case 3: search();
+                break;
+
+       case 4: exit(0);
+       default: printf("\nWrong selection! Try again!");
+      }
+   }
+}
+
